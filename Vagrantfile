@@ -34,6 +34,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Set the PE Role for this node and run post-install configuration
   master.vm.provision :pe_bootstrap do |provisioner|
     provisioner.role = :master
+    provisioner.verbose = true
+    provisioner.autosign = true
     provisioner.answer_file = 'provision/pe.conf'
   end
     master.vm.provision :shell, path: "provision/master.sh"
@@ -64,7 +66,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Set the PE Role of This Node
   development.vm.provision :pe_agent do |provisioner|
-    provisioner.master = 'master.puppetlabs.vm'
+    provisioner.master_vm = 'master.puppetlabs.vm'
   end
     development.vm.provision :shell, path: "provision/development.sh"
   end
@@ -94,7 +96,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Set the PE Role of This Node
   production.vm.provision :pe_agent do |provisioner|
-    provisioner.master = 'master.puppetlabs.vm'
+    provisioner.master_vm = 'master.puppetlabs.vm'
   end
     production.vm.provision :shell, path: "provision/production.sh"
   end
