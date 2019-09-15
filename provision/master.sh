@@ -3,13 +3,13 @@
 # Setup path to Puppet binaries before environment gets sourced
 export PATH=$PATH:/opt/puppetlabs/puppet/bin/
 
-# Install Zack's r10k module
+# Install Puppet's r10k module
 /opt/puppetlabs/puppet/bin/puppet module install 'puppet-r10k'
 
 # Install Hunner's Hiera module
 /opt/puppetlabs/puppet/bin/puppet module install 'puppet-hiera'
 
-# Stop and disable iptables
+# Stop and disable FirewallD
 /bin/systemctl stop firewalld.service
 /bin/systemctl disable firewalld.service
 
